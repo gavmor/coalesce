@@ -1,13 +1,8 @@
 import invariant from 'tiny-invariant'
-import {
-  $getRoot,
-  LexicalNode,
-  Klass,
-  ElementNode,
-  $copyNode,
-  TextNode,
-  $isTextNode,
-} from 'lexical'
+import _lexical from 'lexical'
+import type { LexicalNode, Klass, ElementNode } from 'lexical'
+// deno-lint-ignore no-explicit-any
+const { $getRoot, $copyNode, $isTextNode } = _lexical as any
 import { HeadingNode } from '@lexical/rich-text'
 import { SoundNode } from './SoundNode.ts'
 import { SpeakerNode } from './SpeakerNode.ts'

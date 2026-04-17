@@ -1,7 +1,8 @@
 import { SoundLocation } from '../types.ts'
 
-// @deno-types="https://esm.sh/lexical@0.12.2?pin=130"
-import { TextNode } from 'lexical'
+import _lexical from 'lexical'
+// deno-lint-ignore no-explicit-any
+const { TextNode } = _lexical as any
 import type { EditorConfig, LexicalNode, NodeKey } from 'lexical'
 
 function isPlayingStyle(isPlaying: boolean) {

@@ -31,7 +31,10 @@ export class CollabCluster {
     this.endpoint = endpoint
     const hostname = new URL(endpoint).hostname
 
-    if (isIP(hostname) || hostname === 'localhost') {
+    // Skip DNS discovery for IPs, localhost, and dotless Docker service names.
+    // Deno.resolveDns appends system search domains (e.g. Tailscale) to dotless
+    // hostnames, which breaks Docker Compose service name resolution.
+    if (isIP(hostname) || hostname === 'localhost' || !hostname.includes('.')) {
       this.ring.addNode(hostname)
       return
     }

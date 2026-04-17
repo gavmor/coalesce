@@ -31,23 +31,26 @@ export type { Migration, MigrationProvider } from 'kysely'
 
 export { z, type ZodTypeAny, type output as ZodOutput } from 'zod'
 
-// @deno-types="https://esm.sh/lexical@0.12.2?pin=130"
-export {
-  $createParagraphNode,
-  $createTextNode,
-  $getRoot,
-  $splitNode,
-  $isTextNode,
-  $isElementNode,
-} from 'lexical'
-export type { LexicalEditor, LexicalNode } from 'lexical'
+// npm:lexical@0.12.2 is a CJS module; Deno wraps it as default only
+import _lexical from 'lexical'
+// deno-lint-ignore no-explicit-any
+const _l = _lexical as any
+export const $createParagraphNode: typeof import('npm:lexical@0.12.2')['$createParagraphNode'] = _l.$createParagraphNode
+export const $createTextNode: typeof import('npm:lexical@0.12.2')['$createTextNode'] = _l.$createTextNode
+export const $getRoot: typeof import('npm:lexical@0.12.2')['$getRoot'] = _l.$getRoot
+export const $splitNode: typeof import('npm:lexical@0.12.2')['$splitNode'] = _l.$splitNode
+export const $isTextNode: typeof import('npm:lexical@0.12.2')['$isTextNode'] = _l.$isTextNode
+export const $isElementNode: typeof import('npm:lexical@0.12.2')['$isElementNode'] = _l.$isElementNode
+export type { LexicalEditor, LexicalNode } from 'npm:lexical@0.12.2'
 
-// @lexical/yjs requires the CSM version of yjs which is incompatible with our mjs import
-// see: https://github.com/facebook/lexical/issues/1707
-export { default as lexicalYjs } from 'https://esm.sh/@lexical/yjs@0.12.2?pin=130&external=lexical,yjs'
+export * as lexicalYjs from '@lexical/yjs'
 
-// Lexical's dist confuses both Deno and esm.sh because it selects between a .dev and a .prod JS file
-export { createHeadlessEditor } from 'https://esm.sh/@lexical/headless@0.12.2?pin=130&external=lexical&cjs-exports=createHeadlessEditor'
+// @lexical/headless@0.12.2 is a CJS module; Deno wraps it as default
+import _lexicalHeadless from '@lexical/headless'
+// deno-lint-ignore no-explicit-any
+export const createHeadlessEditor = (_lexicalHeadless as any).createHeadlessEditor ?? _lexicalHeadless
+// ensure selection is pre-resolved at the correct version
+import '@lexical/selection'
 
 // @deno-types="npm:@types/pg@^8.10.2"
 export { default as pg } from 'npm:pg@^8.11.1'

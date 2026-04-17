@@ -1,5 +1,6 @@
-// @deno-types="https://esm.sh/lexical@0.12.2?pin=130"
-import { ParagraphNode } from 'lexical'
+import _lexical from 'lexical'
+// deno-lint-ignore no-explicit-any
+const { ParagraphNode } = _lexical as any
 import type { EditorConfig, LexicalNode, NodeKey } from 'lexical'
 
 export class SpeakerNode extends ParagraphNode {
