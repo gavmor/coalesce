@@ -2,6 +2,7 @@
   "fmt": {
     "semiColons": false
   },
+  "nodeModulesDir": true,
   "imports": {
     "@shared/constants": "../shared/constants.ts",
     "@shared/schema": "../shared/schema.ts",

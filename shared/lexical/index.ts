@@ -3,7 +3,9 @@ import _lexical from 'lexical'
 import type { LexicalNode, Klass, ElementNode } from 'lexical'
 // deno-lint-ignore no-explicit-any
 const { $getRoot, $copyNode, $isTextNode } = _lexical as any
-import { HeadingNode } from '@lexical/rich-text'
+import _richText from '@lexical/rich-text'
+// deno-lint-ignore no-explicit-any
+const { HeadingNode } = _richText as any
 import { SoundNode } from './SoundNode.ts'
 import { SpeakerNode } from './SpeakerNode.ts'
 
