@@ -1,4 +1,4 @@
-FROM denoland/deno:1.38.4
+FROM denoland/deno:2.7.12
 
 WORKDIR /app/project-server
 
